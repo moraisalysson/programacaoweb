@@ -1,7 +1,6 @@
 package dev.fujioka.java.avancado.web.web.rest;
 
 import dev.fujioka.java.avancado.web.domain.Product;
-import dev.fujioka.java.avancado.web.repository.ProductRepository;
 import dev.fujioka.java.avancado.web.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +15,9 @@ public class ProductResource {
     @Autowired
     private ProductService productService;
 
-
     @GetMapping("/product")
     public List<Product> getProductList() {
-
         return productService.findAll();
-    }
-
-    @GetMapping("/product/{name}")
-    public List<Product> getListByName(@PathVariable String name){
-        return productService.getListByName(name);
     }
 
 
@@ -55,5 +47,23 @@ public class ProductResource {
         return ResponseEntity.ok().body("Product excluded " + product.getId());
     }
 
+    @GetMapping("/product/{name}")
+    public List<Product> listProductsByName(@PathVariable String name) {
+        return productService.listProductsByName(name);
+    }
 
+    @GetMapping(value = "/product/id/{id}")
+    public List<Product> getListById(@PathVariable Long id){
+        return productService.getListById(id);
+    }
+
+    @GetMapping(value = "/product/description/{description}")
+    public List<Product> getProductByDescription(@PathVariable String description){
+        return productService.getProductByDescription(description);
+    }
+
+    @GetMapping(value = "/product/nameanddescription/{name}/{description}")
+    public List<Product> getProductByNameAndDescription(@PathVariable String name, @PathVariable String description){
+        return productService.getProductByNameAndDescription(name, description);
+    }
 }

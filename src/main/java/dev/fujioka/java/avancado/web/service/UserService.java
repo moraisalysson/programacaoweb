@@ -5,8 +5,7 @@ import dev.fujioka.java.avancado.web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService implements CrudInterface<User> {
@@ -43,4 +42,21 @@ public class UserService implements CrudInterface<User> {
     public long count() {
         return userRepository.count();
     }
+
+    public List<User> getUserByFirstName(String firstName) { return userRepository.findUserByFirstName(firstName); }
+
+    public List<User> getUserByLastName(String lastName) { return userRepository.findUserByLastName(lastName); }
+
+    public List<User> getUserByLogin (String login) { return userRepository.findUserByLogin(login); }
+
+    public List<User> getUserByFirstNameAndLastName (String firstName, String lastName) {
+        return userRepository.findUserByFirstNameAndLastName(firstName, lastName);
+    }
+
+    public List<User> getUserById (Long id) { return userRepository.findUserById(id); }
+
+    public List<User> getUserbyLoginAndFirstName(String login, String firstName) {
+        return userRepository.findUserByLoginAndFirstName(login, firstName);
+    }
+
 }

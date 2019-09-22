@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import java.util.List;
 
 @RestController
@@ -48,5 +49,34 @@ public class UserResource {
         return ResponseEntity.ok().body("User excluded ID: " + id);
     }
 
+    @GetMapping("/user/firstname/{firstName}")
+    public List<User> getUserByName(@PathVariable String firstName) {
+        return userService.getUserByFirstName(firstName);
+    }
+
+    @GetMapping("/user/lastname/{lastName}")
+    public List<User> getUserByLastName(@PathVariable String lastName) {
+        return userService.getUserByLastName(lastName);
+    }
+
+    @GetMapping("/user/login/{login}")
+    public List<User> getUserByLogin(@PathVariable String login) {
+        return userService.getUserByLogin(login);
+    }
+
+    @GetMapping("/user/name/{firstName}/{lastName}")
+    public List<User> getUserByFirstNameAndLastName(@PathVariable String firstName, @PathVariable String lastName) {
+        return userService.getUserByFirstNameAndLastName(firstName, lastName);
+    }
+
+    @GetMapping("/user/id/{id}")
+    public List<User> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
+
+    @GetMapping("/user/loginfirstname/{login}/{firstName}")
+    public List<User> getUserbyLoginAndFirstName(@PathVariable String login, @PathVariable  String firstName) {
+        return userService.getUserbyLoginAndFirstName(login, firstName);
+    }
 
 }
