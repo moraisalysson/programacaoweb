@@ -36,6 +36,9 @@ public class Product implements Serializable {
     @LastModifiedDate
     private Date dtUpdate;
 
+    @Column
+    private StatusProduto statusProduto;
+    
     public Long getId() {
         return id;
     }
@@ -58,5 +61,9 @@ public class Product implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+ 
+    public StatusProduto getStatusProduto() {
+    	return statusProduto;
     }
 }

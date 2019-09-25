@@ -1,6 +1,7 @@
 package dev.fujioka.java.avancado.web.web.rest;
 
 import dev.fujioka.java.avancado.web.domain.Product;
+import dev.fujioka.java.avancado.web.domain.StatusProduto;
 import dev.fujioka.java.avancado.web.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -65,5 +66,10 @@ public class ProductResource {
     @GetMapping(value = "/product/nameanddescription/{name}/{description}")
     public List<Product> getProductByNameAndDescription(@PathVariable String name, @PathVariable String description){
         return productService.getProductByNameAndDescription(name, description);
+    }
+    
+    @GetMapping(value = "/product/status/{status}")
+    public List<Product> getProductByStatus(@PathVariable StatusProduto status) {
+    	return productService.getProductByStatus(status);
     }
 }

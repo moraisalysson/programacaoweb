@@ -1,7 +1,10 @@
 package dev.fujioka.java.avancado.web.repository;
 
 import dev.fujioka.java.avancado.web.domain.Product;
+import dev.fujioka.java.avancado.web.domain.StatusProduto;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +24,6 @@ public interface ProductRepository
             @Param("name") String name, @Param("description") String description
     );
 
+    @Query("SELECT p FROM Product p WHERE p.statusProduto = :statusProduto")
+    public List<Product> findProductByStatus(@Param("statusProduto") StatusProduto statusProduto);
 }

@@ -1,6 +1,7 @@
 package dev.fujioka.java.avancado.web.service;
 
 import dev.fujioka.java.avancado.web.domain.Product;
+import dev.fujioka.java.avancado.web.domain.StatusProduto;
 import dev.fujioka.java.avancado.web.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,4 +59,7 @@ public class ProductService
         return productRepository.findProductByNameAndDescription(name, description);
     }
 
+    public List<Product> getProductByStatus(StatusProduto status) {
+    	return productRepository.findProductByStatus(status);
+    }
 }
